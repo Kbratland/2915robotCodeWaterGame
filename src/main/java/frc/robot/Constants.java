@@ -56,6 +56,13 @@ public final class Constants {
     public static final int kFrontRightTurningCanId = 22;
     public static final int kRearRightTurningCanId = 12;
 
+    public static final int cUpMotorCanId = 61;
+
+    public static final int aWristMotorCanId = 50;
+    public static final int aWristMotorCanIdTheSequel = 51;
+    public static final int aNeoMotorCanId = 52;
+    public static final int aNeoMotorCanIdTheSequel = 53;
+
     public static final boolean kGyroReversed = false;
   }
 
