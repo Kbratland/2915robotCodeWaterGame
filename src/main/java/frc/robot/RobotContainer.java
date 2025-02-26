@@ -20,6 +20,9 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.coralSuperComponentSubsystem;
+import frc.robot.subsystems.myAirCompressorIsRunningAndICantCatchIt;
+import frc.robot.subsystems.superAlgaeIntorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -35,10 +38,19 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final coralSuperComponentSubsystem m_coralSubsystem = new coralSuperComponentSubsystem();
+  private final superAlgaeIntorSubsystem m_algaeSubsystem = new superAlgaeIntorSubsystem();
+  private final myAirCompressorIsRunningAndICantCatchIt m_pneumatics = new myAirCompressorIsRunningAndICantCatchIt();
 
   // The driver's controller
   Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
 
+  JoystickButton button1 = new JoystickButton(m_driverController, 1);
+  JoystickButton button2 = new JoystickButton(m_driverController, 2);
+  JoystickButton button3 = new JoystickButton(m_driverController, 3);
+  JoystickButton button4 = new JoystickButton(m_driverController, 4);
+  JoystickButton button5 = new JoystickButton(m_driverController, 5);
+  JoystickButton button6 = new JoystickButton(m_driverController, 6);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -69,10 +81,8 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driverController, Button.kR1.value)
-        .whileTrue(new RunCommand(
-            () -> m_robotDrive.setX(),
-            m_robotDrive));
+
+    new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_robotDrive.setX(),m_robotDrive));
   }
 
   /**
