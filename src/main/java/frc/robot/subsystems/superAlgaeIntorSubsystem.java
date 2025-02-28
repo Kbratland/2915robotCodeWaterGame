@@ -39,4 +39,11 @@ public class superAlgaeIntorSubsystem extends SubsystemBase {
         sparkleMax2.set(-grabIntatorSpeed);
     }
 
+    public void WEREGONNACRASH(){
+        sparkleMax1.set(0);
+        sparkleMax2.set(0);
+        superTalonInator.set(ControlMode.PercentOutput, 0);
+        superTalonInator2.set(ControlMode.PercentOutput, 0);
+    }
+
 }

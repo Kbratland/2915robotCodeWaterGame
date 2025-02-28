@@ -13,7 +13,12 @@ public class coralSuperComponentSubsystem extends SubsystemBase {
     public void cWinchPositive(){
         motor.set(ControlMode.PercentOutput, 1);
     }
+
     public void cWinchNegative(){
         motor.set(ControlMode.PercentOutput, -1);
+    }
+
+    public void noMoreUppies(){
+        motor.set(ControlMode.PercentOutput,0);
     }
 }
