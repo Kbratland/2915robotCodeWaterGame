@@ -1,15 +1,14 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
 
-    private final Solenoid coralAngleInator = new Solenoid(PneumaticsModuleType.REVPH, 0);
-
-    private final Solenoid climbLegFeetPistons = new Solenoid(PneumaticsModuleType.REVPH, 1);
-
+    private final DoubleSolenoid coralAngleInator = new DoubleSolenoid(PneumaticsModuleType.REVPH, 8,9);
+    private final DoubleSolenoid climbLegFeetPistons = new DoubleSolenoid(PneumaticsModuleType.REVPH, 10,11);
+    DoubleSolenoid cheese = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
     public void ClimberToggle(){
         climbLegFeetPistons.toggle();
     }
