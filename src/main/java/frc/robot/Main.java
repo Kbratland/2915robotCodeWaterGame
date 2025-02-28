@@ -6,6 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
 
+//THIS IS THE MAIN THING, DO NOT TOUCH THIS THING, if you even so much as think to start changing my precious RobotBase.startRobot I shall rain 
+//destruction down upon thee with the fury of all the stars in the sky,  pls no touch :)
+
 /**
  * Do NOT add any static variables to this class, or any initialization at all. Unless you know what
  * you are doing, do not modify this file except to change the parameter class to the startRobot
