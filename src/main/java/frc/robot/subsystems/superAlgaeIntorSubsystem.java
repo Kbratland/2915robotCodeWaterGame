@@ -17,7 +17,7 @@ public class superAlgaeIntorSubsystem extends SubsystemBase {
     private final TalonSRX superTalonInator2 = new TalonSRX(DriveConstants.aWristMotorCanIdTheSequel);
 
     public double wristSpeed = 0.25;
-    public double grabIntatorSpeed = 0.25;
+    public double grabIntatorSpeed = 0.33333333333333333333333;
 
     public void wristUp(){
         superTalonInator.set(ControlMode.PercentOutput, wristSpeed);
