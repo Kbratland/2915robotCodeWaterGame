@@ -8,7 +8,7 @@ public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
 
     private final DoubleSolenoid coralAngleInator = new DoubleSolenoid(PneumaticsModuleType.REVPH, 8,9);
     private final DoubleSolenoid climbLegFeetPistons = new DoubleSolenoid(PneumaticsModuleType.REVPH, 10,11);
-    DoubleSolenoid cheese = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
+    
     public void ClimberToggle(){
         climbLegFeetPistons.toggle();
     }
