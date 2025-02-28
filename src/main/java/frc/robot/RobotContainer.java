@@ -51,6 +51,8 @@ public class RobotContainer {
   JoystickButton button4 = new JoystickButton(m_driverController, 4);
   JoystickButton button5 = new JoystickButton(m_driverController, 5);
   JoystickButton button6 = new JoystickButton(m_driverController, 6);
+  JoystickButton button7 = new JoystickButton(m_driverController, 7);
+  JoystickButton button8 = new JoystickButton(m_driverController, 8);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -83,6 +85,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_robotDrive.setX(),m_robotDrive));
+    button1.onTrue(new RunCommand(() -> m_pneumatics.ClimberToggle(), m_pneumatics));
+    button2.onTrue(new RunCommand(() -> m_pneumatics.CoralToggle(), m_pneumatics));
+    button3.onTrue(new RunCommand(() -> m_coralSubsystem.cWinchPositive(), m_coralSubsystem));
+    button4.onTrue(new RunCommand(() -> m_coralSubsystem.cWinchNegative(),m_coralSubsystem));
+    button5.onTrue(new RunCommand(() -> m_algaeSubsystem.wristUp(),m_algaeSubsystem));
+    button6.onTrue(new RunCommand(() -> m_algaeSubsystem.wristDown(),m_algaeSubsystem));
+    button7.onTrue(new RunCommand(() -> m_algaeSubsystem.intake(), m_algaeSubsystem));
+    button8.onTrue(new RunCommand(() -> m_algaeSubsystem.outake(), m_algaeSubsystem));
   }
 
   /**
