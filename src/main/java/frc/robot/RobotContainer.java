@@ -21,7 +21,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.coralSuperComponentSubsystem;
 import frc.robot.subsystems.myAirCompressorIsRunningAndICantCatchIt;
-import frc.robot.subsystems.superAlgaeIntorSubsystem;
+import frc.robot.subsystems.superAlgaeInatorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -38,7 +38,7 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final coralSuperComponentSubsystem m_coralSubsystem = new coralSuperComponentSubsystem();
-  private final superAlgaeIntorSubsystem m_algaeSubsystem = new superAlgaeIntorSubsystem();
+  private final superAlgaeInatorSubsystem m_algaeSubsystem = new superAlgaeInatorSubsystem();
   private final myAirCompressorIsRunningAndICantCatchIt m_pneumatics = new myAirCompressorIsRunningAndICantCatchIt();
 
   // The driver's controller

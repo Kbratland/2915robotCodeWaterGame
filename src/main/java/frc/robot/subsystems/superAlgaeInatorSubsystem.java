@@ -8,7 +8,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
-public class superAlgaeIntorSubsystem extends SubsystemBase {
+public class superAlgaeInatorSubsystem extends SubsystemBase {
     
     private final SparkMax sparkleMax1 = new SparkMax(DriveConstants.aNeoMotorCanId, MotorType.kBrushless);
     private final SparkMax sparkleMax2 = new SparkMax(DriveConstants.aNeoMotorCanIdTheSequel, MotorType.kBrushless);
