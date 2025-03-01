@@ -8,7 +8,7 @@ import frc.robot.Constants.DriveConstants;
 
 public class coralSuperComponentSubsystem extends SubsystemBase {
 
-    private final SparkMax motor = new SparkMax(DriveConstants.cUpMotorCanId,MotorType.kBrushless);
+    private final SparkMax motor = new SparkMax(DriveConstants.cUpMotorCanId,MotorType.kBrushed);
 
     public void cWinchPositive(){
         motor.set(1);
