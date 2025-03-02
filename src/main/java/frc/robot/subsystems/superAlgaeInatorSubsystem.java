@@ -20,13 +20,13 @@ public class superAlgaeInatorSubsystem extends SubsystemBase {
     public double grabIntatorSpeed = 0.33333333333333333333333;
 
     public void wristUp(){
-        superTalonInator.set(ControlMode.PercentOutput, wristSpeed);
-        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed);
+        superTalonInator.set(ControlMode.PercentOutput, wristSpeed * 1.15);
+        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed * 1.15);
     }
 
     public void wristDown(){
-        superTalonInator.set(ControlMode.PercentOutput, wristSpeed);
-        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed);
+        superTalonInator.set(ControlMode.PercentOutput, wristSpeed *.8);
+        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed *.8);
     }
     
     public void intake(){
