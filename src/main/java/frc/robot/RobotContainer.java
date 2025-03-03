@@ -18,6 +18,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.algaeIntake;
+import frc.robot.commands.algaeWrist;
+import frc.robot.commands.climberToggle;
+import frc.robot.commands.coralToggle;
+import frc.robot.commands.coralWrist;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.coralSuperComponentSubsystem;
 import frc.robot.subsystems.myAirCompressorIsRunningAndICantCatchIt;
@@ -40,6 +45,15 @@ public class RobotContainer {
   private final coralSuperComponentSubsystem m_coralSubsystem = new coralSuperComponentSubsystem();
   private final superAlgaeInatorSubsystem m_algaeSubsystem = new superAlgaeInatorSubsystem();
   private final myAirCompressorIsRunningAndICantCatchIt m_pneumatics = new myAirCompressorIsRunningAndICantCatchIt();
+
+  public algaeIntake m_Intake = new algaeIntake(m_algaeSubsystem, true);
+  public algaeIntake m_Outake = new algaeIntake(m_algaeSubsystem, false);
+  public algaeWrist m_aWristUp = new algaeWrist(m_algaeSubsystem, true);
+  public algaeWrist m_aWristDown = new algaeWrist(m_algaeSubsystem, false);
+  public climberToggle m_climber = new climberToggle(m_pneumatics);
+  public coralToggle m_cToggle = new coralToggle(m_pneumatics);
+  public coralWrist m_cWristUp = new coralWrist(m_coralSubsystem, true);
+  public coralWrist m_cWristDown = new coralWrist(m_coralSubsystem, false);
 
   // The driver's controller
   Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
@@ -86,14 +100,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(),m_driveSubsystem));
-    button1.onTrue(new RunCommand(() -> m_pneumatics.ClimberToggle(), m_pneumatics));
-    button2.onTrue(new RunCommand(() -> m_pneumatics.CoralToggle(), m_pneumatics));
-    button3.onTrue(new RunCommand(() -> m_coralSubsystem.cWinchPositive(), m_coralSubsystem));
-    button4.onTrue(new RunCommand(() -> m_coralSubsystem.cWinchNegative(),m_coralSubsystem));
-    button5.onTrue(new RunCommand(() -> m_algaeSubsystem.wristUp(),m_algaeSubsystem));
-    button6.onTrue(new RunCommand(() -> m_algaeSubsystem.wristDown(),m_algaeSubsystem));
-    button7.onTrue(new RunCommand(() -> m_algaeSubsystem.intake(), m_algaeSubsystem));
-    button8.onTrue(new RunCommand(() -> m_algaeSubsystem.outake(), m_algaeSubsystem));
+    button1.whileTrue(m_climber);
+    button2.whileTrue(m_cToggle);
+    button3.whileTrue(m_cWristUp);
+    button4.whileTrue(m_cWristDown);
+    button5.whileTrue(m_aWristDown);
+    button6.whileTrue(m_aWristUp);
+    button7.whileTrue(m_Intake);
+    button8.whileTrue(m_Outake);
     button9.onTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));
     button10.onTrue(new RunCommand(() -> m_driveSubsystem.zeroHeading(), m_driveSubsystem));
     

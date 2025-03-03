@@ -21,4 +21,8 @@ public class coralSuperComponentSubsystem extends SubsystemBase {
     public void noMoreUppies(){
         motor.set(0);
     }
+
+    public void end(){
+        motor.set(0);
+    }
 }
