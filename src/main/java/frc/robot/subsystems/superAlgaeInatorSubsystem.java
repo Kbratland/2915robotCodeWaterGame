@@ -16,27 +16,31 @@ public class superAlgaeInatorSubsystem extends SubsystemBase {
     private final TalonSRX superTalonInator = new TalonSRX(DriveConstants.aWristMotorCanId);
     private final TalonSRX superTalonInator2 = new TalonSRX(DriveConstants.aWristMotorCanIdTheSequel);
 
-    public double wristSpeed = 0.25;
+    public double wristSpeed = 0.75;
     public double grabIntatorSpeed = 0.33333333333333333333333;
 
     public void wristUp(){
-        superTalonInator.set(ControlMode.PercentOutput, wristSpeed * 1.15);
-        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed * 1.15);
+        superTalonInator.set(ControlMode.PercentOutput, wristSpeed);
+        superTalonInator2.set(ControlMode.PercentOutput, wristSpeed);
+        System.out.println("wristUp");
     }
 
     public void wristDown(){
-        superTalonInator.set(ControlMode.PercentOutput, wristSpeed *.8);
-        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed *.8);
+        superTalonInator.set(ControlMode.PercentOutput, -wristSpeed);
+        superTalonInator2.set(ControlMode.PercentOutput, -wristSpeed);
+        System.out.println("wristDown");
     }
     
     public void intake(){
         sparkleMax1.set(grabIntatorSpeed);
         sparkleMax2.set(grabIntatorSpeed);
+        System.out.println("intake");
     }
 
     public void outake(){
         sparkleMax1.set(-grabIntatorSpeed);
         sparkleMax2.set(-grabIntatorSpeed);
+        System.out.println("outTake");
     }
 
     public void WEREGONNACRASH(){
@@ -44,6 +48,7 @@ public class superAlgaeInatorSubsystem extends SubsystemBase {
         sparkleMax2.set(0);
         superTalonInator.set(ControlMode.PercentOutput, 0);
         superTalonInator2.set(ControlMode.PercentOutput, 0);
+        System.out.println("WEREGONNACRASH");
     }
 
 }

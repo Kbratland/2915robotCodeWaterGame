@@ -12,17 +12,16 @@ public class coralSuperComponentSubsystem extends SubsystemBase {
 
     public void cWinchPositive(){
         motor.set(1);
+        System.out.println("coralWinchPos");
     }
 
     public void cWinchNegative(){
         motor.set(-1);
-    }
-
-    public void noMoreUppies(){
-        motor.set(0);
+        System.out.println("coralWinchNeg");
     }
 
     public void end(){
         motor.set(0);
+        System.out.println("end");
     }
 }

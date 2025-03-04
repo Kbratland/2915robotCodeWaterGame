@@ -11,9 +11,11 @@ public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
     
     public void ClimberToggle(){
         climbLegFeetPistons.toggle();
+        System.out.println("ClimberToggle");
     }
 
     public void CoralToggle(){
         coralAngleInator.toggle();
+        System.out.println("CoralToggle");
     }
 }

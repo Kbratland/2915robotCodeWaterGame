@@ -102,10 +102,10 @@ public class RobotContainer {
     // new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(),m_driveSubsystem));
     button1.whileTrue(m_climber);
     button2.whileTrue(m_cToggle);
-    button3.whileTrue(m_cWristUp);
-    button4.whileTrue(m_cWristDown);
-    button5.whileTrue(m_aWristDown);
-    button6.whileTrue(m_aWristUp);
+    button3.whileTrue(m_aWristUp);
+    button4.whileTrue(m_aWristDown);
+    button5.whileTrue(m_cWristDown);
+    button6.whileTrue(m_cWristUp);
     button7.whileTrue(m_Intake);
     button8.whileTrue(m_Outake);
     button9.onTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));
