@@ -6,26 +6,26 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
 
-    private final DoubleSolenoid coralAngleInator = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0,7);
-    private final DoubleSolenoid climbLegFeetPistons = new DoubleSolenoid(PneumaticsModuleType.REVPH, 8,15);
+    private final DoubleSolenoid coralAngleInator = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0,8);
+    private final DoubleSolenoid climbLegFeetPistons = new DoubleSolenoid(PneumaticsModuleType.REVPH, 15,7);
     
     public void ClimberUp(){
         climbLegFeetPistons.set(DoubleSolenoid.Value.kForward);
-        System.out.println("ClimberToggle");
+        System.out.println("ClimberUp");
     }
 
     public void CoralUp(){
         coralAngleInator.set(DoubleSolenoid.Value.kForward);
-        System.out.println("CoralToggle");
+        System.out.println("CoralUp");
     }
 
     public void ClimberDown(){
         climbLegFeetPistons.set(DoubleSolenoid.Value.kReverse);
-        System.out.println("ClimberToggle");
+        System.out.println("ClimberDown");
     }
 
     public void CoralDown(){
         coralAngleInator.set(DoubleSolenoid.Value.kReverse);
-        System.out.println("CoralToggle");
+        System.out.println("CoralDown");
     }
 }

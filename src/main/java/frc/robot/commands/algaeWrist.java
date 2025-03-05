@@ -16,10 +16,10 @@ public class algaeWrist extends Command {
     }
     public void execute(){
         if(goingUp){
-            m_algaeSubsystem.wristUp();
+            m_algaeSubsystem.wristDown();
         }
         else{
-            m_algaeSubsystem.wristDown();
+            m_algaeSubsystem.wristUp();
         }
     }
     public boolean isFinished(){

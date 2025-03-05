@@ -48,8 +48,8 @@ public class RobotContainer {
 
   public algaeIntake m_Intake = new algaeIntake(m_algaeSubsystem, true);
   public algaeIntake m_Outake = new algaeIntake(m_algaeSubsystem, false);
-  public algaeWrist m_aWristUp = new algaeWrist(m_algaeSubsystem, true);
-  public algaeWrist m_aWristDown = new algaeWrist(m_algaeSubsystem, false);
+  public algaeWrist m_aWristDown = new algaeWrist(m_algaeSubsystem, true);
+  public algaeWrist m_aWristUp = new algaeWrist(m_algaeSubsystem, false);
   public climberToggle m_climberUp = new climberToggle(m_pneumatics,true);
   public coralToggle m_cToggleUp = new coralToggle(m_pneumatics, true);
   public climberToggle m_climberDown = new climberToggle(m_pneumatics,false);

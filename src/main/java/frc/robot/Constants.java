@@ -88,7 +88,7 @@ public final class Constants {
     public static final double kDriveDeadband = 0.075;
   }
 
-  public static final class AutoConstants {
+  public static final class AutoConstants { 
     public static final double kMaxSpeedMetersPerSecond = 1;
     public static final double kMaxAccelerationMetersPerSecondSquared = 1;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI /2;
