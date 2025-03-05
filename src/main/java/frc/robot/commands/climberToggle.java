@@ -5,18 +5,25 @@ import frc.robot.subsystems.myAirCompressorIsRunningAndICantCatchIt;
 
 public class climberToggle extends Command {
      myAirCompressorIsRunningAndICantCatchIt m_pnuematics;
+     private boolean tFlip;
 
-    public climberToggle(myAirCompressorIsRunningAndICantCatchIt m_pneumatics){
+    public climberToggle(myAirCompressorIsRunningAndICantCatchIt m_pneumatics, boolean tFlip){
         this.m_pnuematics = m_pneumatics;
+        this.tFlip = tFlip;
     }
     @Override
     public void initialize(){
-        m_pnuematics.ClimberToggle();
+        if(tFlip){
+            m_pnuematics.ClimberUp();
+        }
+        else{
+            m_pnuematics.ClimberDown();
+        }
     }
 
     public void execute(){}
 
     public boolean isFinished(){
-        return true;
+        return false;
     }
 }

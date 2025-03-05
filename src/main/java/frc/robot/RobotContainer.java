@@ -50,8 +50,10 @@ public class RobotContainer {
   public algaeIntake m_Outake = new algaeIntake(m_algaeSubsystem, false);
   public algaeWrist m_aWristUp = new algaeWrist(m_algaeSubsystem, true);
   public algaeWrist m_aWristDown = new algaeWrist(m_algaeSubsystem, false);
-  public climberToggle m_climber = new climberToggle(m_pneumatics);
-  public coralToggle m_cToggle = new coralToggle(m_pneumatics);
+  public climberToggle m_climberUp = new climberToggle(m_pneumatics,true);
+  public coralToggle m_cToggleUp = new coralToggle(m_pneumatics, true);
+  public climberToggle m_climberDown = new climberToggle(m_pneumatics,false);
+  public coralToggle m_cToggleDown = new coralToggle(m_pneumatics, false);
   public coralWrist m_cWristUp = new coralWrist(m_coralSubsystem, true);
   public coralWrist m_cWristDown = new coralWrist(m_coralSubsystem, false);
 
@@ -68,6 +70,8 @@ public class RobotContainer {
   JoystickButton button8 = new JoystickButton(m_driverController, 8);
   JoystickButton button9 = new JoystickButton(m_driverController, 9);
   JoystickButton button10 = new JoystickButton(m_driverController, 10);
+  JoystickButton button11 = new JoystickButton(m_driverController, 11);
+  JoystickButton button12 = new JoystickButton(m_driverController, 12);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -100,8 +104,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(),m_driveSubsystem));
-    button1.whileTrue(m_climber);
-    button2.whileTrue(m_cToggle);
+    button1.onTrue(m_cToggleDown);
+    button2.onTrue(m_cToggleUp);
     button3.whileTrue(m_aWristUp);
     button4.whileTrue(m_aWristDown);
     button5.whileTrue(m_cWristDown);
@@ -110,6 +114,8 @@ public class RobotContainer {
     button8.whileTrue(m_Outake);
     button9.onTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));
     button10.onTrue(new RunCommand(() -> m_driveSubsystem.zeroHeading(), m_driveSubsystem));
+    button11.onTrue(m_climberDown);
+    button12.onTrue(m_climberUp);
     
   }
 
@@ -162,6 +168,6 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_driveSubsystem.drive(0, 0, 0, false))
-                                  .andThen(new RunCommand(() -> m_pneumatics.CoralToggle(), m_pneumatics));
+                                  .andThen(new RunCommand(() -> m_pneumatics.CoralUp(), m_pneumatics));
   }
 }

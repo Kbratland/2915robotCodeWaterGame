@@ -26,7 +26,9 @@ public class coralWrist extends Command {
     }
 
     public boolean isFinished(){
-        m_coralSubsystem.end();
         return false;
+    }
+    public void end(boolean interupted){
+        m_coralSubsystem.end();
     }
 }

@@ -25,7 +25,9 @@ public class algaeIntake extends Command {
         }
     }
     public boolean isFinished(){
+        return false;
+    }
+    public void end(boolean interupted){
         m_algaeSubsystem.WEREGONNACRASH();
-        return true;
     }
 }
