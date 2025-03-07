@@ -9,9 +9,9 @@ public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
     private final DoubleSolenoid coralAngleInator = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0,8);
     private final DoubleSolenoid climbLegFeetPistons = new DoubleSolenoid(PneumaticsModuleType.REVPH, 15,7);
     
-    public void ClimberUp(){
+    public void ClimberDown(){
         climbLegFeetPistons.set(DoubleSolenoid.Value.kForward);
-        System.out.println("ClimberUp");
+        System.out.println("ClimberDown");
     }
 
     public void CoralUp(){
@@ -19,9 +19,9 @@ public class myAirCompressorIsRunningAndICantCatchIt extends SubsystemBase {
         System.out.println("CoralUp");
     }
 
-    public void ClimberDown(){
+    public void ClimberUp(){
         climbLegFeetPistons.set(DoubleSolenoid.Value.kReverse);
-        System.out.println("ClimberDown");
+        System.out.println("ClimberUp");
     }
 
     public void CoralDown(){

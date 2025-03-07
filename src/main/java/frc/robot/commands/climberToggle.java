@@ -14,10 +14,10 @@ public class climberToggle extends Command {
     @Override
     public void initialize(){
         if(tFlip){
-            m_pnuematics.ClimberUp();
+            m_pnuematics.ClimberDown();
         }
         else{
-            m_pnuematics.ClimberDown();
+            m_pnuematics.ClimberUp();
         }
     }
 

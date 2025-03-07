@@ -88,7 +88,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_driverController.getY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getZ(), OIConstants.kDriveDeadband),
-                true),
+                false),
             m_driveSubsystem));
   }
 
@@ -102,14 +102,14 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    // ctrl-x storage: 
     // new JoystickButton(m_driverController, Button.kR1.value).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(),m_driveSubsystem));
     button1.onTrue(m_cToggleDown);
     button2.onTrue(m_cToggleUp);
-    button3.whileTrue(m_aWristUp);
-    button4.whileTrue(m_aWristDown);
-    button5.whileTrue(m_cWristDown);
-    button6.whileTrue(m_cWristUp);
+    button3.whileTrue(m_cWristDown);
+    button4.whileTrue(m_cWristUp);
+    button5.whileTrue(m_aWristDown);
+    button6.whileTrue(m_aWristUp);
     button7.whileTrue(m_Intake);
     button8.whileTrue(m_Outake);
     button9.onTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));
@@ -140,7 +140,7 @@ public class RobotContainer {
         new Pose2d(0, 0, new Rotation2d(0)),
 
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(0.5, 0)),
+        List.of(new Translation2d(2.1, 0)),
 
         // End 3 meters straight ahead of where we started, facing forward
         new Pose2d(1, 0, new Rotation2d(0)),
@@ -168,6 +168,6 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_driveSubsystem.drive(0, 0, 0, false))
-                                  .andThen(new RunCommand(() -> m_pneumatics.CoralUp(), m_pneumatics));
+                                  .andThen(m_cToggleDown);
   }
 }
