@@ -41,7 +41,7 @@ import java.util.List;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
+  public final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final coralSuperComponentSubsystem m_coralSubsystem = new coralSuperComponentSubsystem();
   private final superAlgaeInatorSubsystem m_algaeSubsystem = new superAlgaeInatorSubsystem();
   private final myAirCompressorIsRunningAndICantCatchIt m_pneumatics = new myAirCompressorIsRunningAndICantCatchIt();

@@ -8,12 +8,13 @@ import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 
 import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Transform3d;
 
 public class AprilTagSubsystem {
     PhotonCamera camera = new PhotonCamera("photonvision");
-    private static double posX[];
-    private static double posY[];
-    private static double angle[];
+    private static List<Double> posX;
+    private static List<Double> posY;
+    private static List<Double> angle;
 
     public void rePosition(int tagID){
         var result = camera.getLatestResult();
@@ -23,13 +24,13 @@ public class AprilTagSubsystem {
             double pitch = target.getPitch();
             double area = target.getArea();
             double skew = target.getSkew();
-            Transform2d pose = target.getCameraToTarget();
-            List<TargetCorner> corners = target.getCorners();
+            Transform3d pose = target.getBestCameraToTarget();
+            List<TargetCorner> corners = target.getDetectedCorners();
             int targetID = target.getFiducialId();
 
         }
         else{
-
+            
         }
         return;
     }
