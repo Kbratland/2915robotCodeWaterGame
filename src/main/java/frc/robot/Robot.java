@@ -53,26 +53,6 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    SmartDashboard.putData("Swerve Drive", new Sendable() {
-      @Override
-      public void initSendable(SendableBuilder builder) {
-        builder.setSmartDashboardType("SwerveDrive");
-    
-        builder.addDoubleProperty("Front Left Angle", () -> (m_robotContainer.m_driveSubsystem.m_frontLeft.m_turningEncoder.getPosition() - DriveConstants.kFrontLeftChassisAngularOffset), null);
-        builder.addDoubleProperty("Front Left Velocity", () -> m_robotContainer.m_driveSubsystem.m_frontLeft.m_drivingEncoder.getVelocity(), null);
-    
-        builder.addDoubleProperty("Front Right Angle", () -> (m_robotContainer.m_driveSubsystem.m_frontRight.m_turningEncoder.getPosition() - DriveConstants.kFrontRightChassisAngularOffset), null);
-        builder.addDoubleProperty("Front Right Velocity", () ->m_robotContainer.m_driveSubsystem.m_frontRight.m_drivingEncoder.getVelocity(), null);
-    
-        builder.addDoubleProperty("Back Left Angle", () -> (m_robotContainer.m_driveSubsystem.m_rearLeft.m_turningEncoder.getPosition() - DriveConstants.kBackLeftChassisAngularOffset), null);
-        builder.addDoubleProperty("Back Left Velocity", () -> m_robotContainer.m_driveSubsystem.m_rearLeft.m_drivingEncoder.getVelocity(), null);
-    
-        builder.addDoubleProperty("Back Right Angle", () -> (m_robotContainer.m_driveSubsystem.m_rearRight.m_turningEncoder.getPosition() - DriveConstants.kBackRightChassisAngularOffset), null);
-        builder.addDoubleProperty("Back Right Velocity", () -> m_robotContainer.m_driveSubsystem.m_rearRight.m_drivingEncoder.getVelocity(), null);
-    
-        builder.addDoubleProperty("Robot Angle", () -> (m_robotContainer.m_driveSubsystem.m_gyro.getAngle()%360)*(Math.PI/180), null);
-      }
-    });
     CommandScheduler.getInstance().run();
   }
 

@@ -4,7 +4,16 @@
 
 package frc.robot;
 
+import java.util.Vector;
+
+import static edu.wpi.first.math.util.Units.degreesToRadians;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
@@ -105,5 +114,27 @@ public final class Constants {
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
+  }
+  public static final class VisionConstants{
+    public static final double FIELD_WIDTH_METERS = 8.21;
+
+    public static final double FIELD_LENGTH_METERS = 16.54;
+
+    //Minimum target ambiguity. Targets with higher ambiguity will be discarded
+    public static final double APRILTAG_AMBIGUITY_THRESHOLD = 0.2;
+
+    //Physical location of the apriltag camera on the robot, relative to the center of the robot. 
+    public static final Transform3d APRILTAG_CAMERA_TO_ROBOT = new Transform3d(
+        new Translation3d(-0.0381, 0.2794, 0.9271),
+        new Rotation3d(0.0, 0, 0));
+
+    //// Pose on the opposite side of the field. Use with `relativeTo` to flip a pose to the opposite alliance
+    public static final Pose2d FLIPPING_POSE = new Pose2d(
+        new Translation2d(FIELD_LENGTH_METERS, FIELD_WIDTH_METERS),
+        new Rotation2d(Math.PI));
+
+    //1.5 inches left
+    //11 inches forward
+    //36.5 inches up
   }
 }
