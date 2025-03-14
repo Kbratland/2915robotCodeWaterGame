@@ -88,7 +88,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_driverController.getY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getZ(), OIConstants.kDriveDeadband),
-                false),
+                true),
             m_driveSubsystem));
   }
 
@@ -167,7 +167,9 @@ public class RobotContainer {
     m_driveSubsystem.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_driveSubsystem.drive(0, 0, 0, false))
-                                  .andThen(m_cToggleDown);
+    return new RunCommand(() -> m_driveSubsystem.drive(-.2, 0, 0, false), m_driveSubsystem);
+
+    // return swerveControllerCommand.andThen(() -> m_driveSubsystem.drive(0, 0, 0, false))
+    //                               .andThen(m_cToggleDown);
   }
 }
