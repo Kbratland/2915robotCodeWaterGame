@@ -15,8 +15,8 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.VisionConstants;
@@ -37,6 +37,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
    * matrix is in the form [x, y, theta]ᵀ, with units in meters and radians, then meters.
    */
   private static final Vector<N3> stateStdDevs = VecBuilder.fill(0.1, 0.1, 0.1);
+  private static DriveSubsystem m_driveSubsystem;
 
   /**
    * Standard deviations of the vision measurements. Increase these numbers to trust global measurements from vision
@@ -47,15 +48,23 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   private final Supplier<Rotation2d> rotationSupplier;
   private final Supplier<SwerveModulePosition[]> modulePositionSupplier;
   private final SwerveDrivePoseEstimator poseEstimator;
-  private final Field2d field2d = new Field2d();
+  public final Field2d field2d = new Field2d();
   private final PhotonRunnable photonEstimator = new PhotonRunnable();
   private final Notifier photonNotifier = new Notifier(photonEstimator);
 
   private OriginPosition originPosition = kBlueAllianceWallRightSide;
   private boolean sawTag = false;
 
-  public PoseEstimatorSubsystem(
-      Supplier<Rotation2d> rotationSupplier, Supplier<SwerveModulePosition[]> modulePositionSupplier) {
+  public PoseEstimatorSubsystem() {
+        Supplier<Rotation2d> rotationSupplier;
+    try {
+        rotationSupplier = () -> m_driveSubsystem.m_gyro.getRotation2d(); 
+    } catch (Exception e) {
+        rotationSupplier = null;
+    }
+    
+    Supplier<SwerveModulePosition[]> modulePositionSupplier = () -> m_driveSubsystem.getModulePositions();
+    SmartDashboard.putData("Field", field2d);
     
     this.rotationSupplier = rotationSupplier;
     this.modulePositionSupplier = modulePositionSupplier;
@@ -73,10 +82,11 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     photonNotifier.startPeriodic(0.02);
   }
 
-  public void addDashboardWidgets(ShuffleboardTab tab) {
-    tab.add("Field", field2d).withPosition(0, 0).withSize(6, 4);
-    tab.addString("Pose", this::getFomattedPose).withPosition(6, 2).withSize(2, 1);
-  }
+//   public void addDashboardWidgets(ShuffleboardTab tab) {
+//     tab.add("Field", field2d).withPosition(0, 0).withSize(6, 4);
+//     tab.addString("Pose", this::getFomattedPose).withPosition(6, 2).withSize(2, 1);
+//   }
+
 
   /**
    * Sets the alliance. This is used to configure the origin of the AprilTag map
@@ -131,7 +141,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     field2d.setRobotPose(dashboardPose);
   }
 
-  private String getFomattedPose() {
+  public String getFomattedPose() {
     var pose = getCurrentPose();
     return String.format("(%.3f, %.3f) %.2f degrees", 
         pose.getX(), 

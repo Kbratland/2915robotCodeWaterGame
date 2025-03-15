@@ -5,7 +5,6 @@ import static frc.robot.Constants.VisionConstants.APRILTAG_CAMERA_TO_ROBOT;
 import static frc.robot.Constants.VisionConstants.FIELD_LENGTH_METERS;
 import static frc.robot.Constants.VisionConstants.FIELD_WIDTH_METERS;
 
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.photonvision.EstimatedRobotPose;
@@ -28,7 +27,7 @@ public class PhotonRunnable implements Runnable {
   private final AtomicReference<EstimatedRobotPose> atomicEstimatedRobotPose = new AtomicReference<EstimatedRobotPose>();
 
   public PhotonRunnable() {
-    photonCamera = new PhotonCamera("OV9281");
+    photonCamera = new PhotonCamera("2915Cam");
     PhotonPoseEstimator photonPoseEstimator = null;
     try {
       var layout = AprilTagFields.k2025ReefscapeWelded.loadAprilTagLayoutField();

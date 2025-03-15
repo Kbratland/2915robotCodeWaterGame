@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import java.util.Arrays;
+
 import com.studica.frc.AHRS;
 
 import edu.wpi.first.hal.FRCNetComm.tInstances;
@@ -18,16 +20,15 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
+
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
       DriveConstants.kFrontLeftTurningCanId,
@@ -47,7 +48,11 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kRearRightDrivingCanId,
       DriveConstants.kRearRightTurningCanId,
       DriveConstants.kBackRightChassisAngularOffset);
+  
+  private final MAXSwerveModule[] swerveModules;
 
+  @SuppressWarnings("unused")
+  private final PoseEstimatorSubsystem poseEstimator = new PoseEstimatorSubsystem();
   // The gyro sensor
 
   // private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
@@ -65,10 +70,11 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearRight.getPosition()
       });
   PowerDistribution m_pdp = new PowerDistribution(20, ModuleType.kRev);
-  private final Field2d m_field = new Field2d();
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // Usage reporting for MAXSwerve template
+    swerveModules = new MAXSwerveModule[] {
+      m_frontLeft, m_frontLeft, m_rearLeft, m_rearRight};
     HAL.report(tResourceType.kResourceType_RobotDrive, tInstances.kRobotDriveSwerve_MaxSwerve);
     SmartDashboard.putData("Swerve Drive", new Sendable() {
       @Override
@@ -86,7 +92,7 @@ public class DriveSubsystem extends SubsystemBase {
     
         builder.addDoubleProperty("Back Right Angle", () -> (m_rearRight.m_turningEncoder.getPosition() - DriveConstants.kBackRightChassisAngularOffset), null);
         builder.addDoubleProperty("Back Right Velocity", () -> m_rearRight.m_drivingEncoder.getVelocity(), null);
-    
+  
         builder.addDoubleProperty("Robot Angle", () -> (-m_gyro.getAngle()%360)*(Math.PI/180), null);
       }
     });
@@ -100,7 +106,6 @@ public class DriveSubsystem extends SubsystemBase {
         builder.addDoubleProperty("Current", () -> m_pdp.getTotalCurrent(), null);
       }
     });
-    SmartDashboard.putData("Field", m_field);
   }
 
   @Override
@@ -114,7 +119,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
       });
-    m_field.setRobotPose(m_odometry.getPoseMeters());
+
   }
   
   
@@ -182,6 +187,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
 
+  public SwerveModulePosition[] getModulePositions() {
+    return Arrays.stream(swerveModules).map(module -> module.getPosition()).toArray(SwerveModulePosition[]::new);
+  }
+
   /**
    * Sets the swerve ModuleStates.
    *
@@ -218,6 +227,7 @@ public class DriveSubsystem extends SubsystemBase {
     return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
   }
 
+  
   /**
    * Returns the turn rate of the robot.
    *

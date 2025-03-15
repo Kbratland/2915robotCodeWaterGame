@@ -4,10 +4,6 @@
 
 package frc.robot;
 
-import java.util.Vector;
-
-import static edu.wpi.first.math.util.Units.degreesToRadians;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -36,7 +32,7 @@ public final class Constants {
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4;
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
-
+    public static final boolean ADD_TO_DASHBOARD = true;
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(30);
     // Distance between centers of right and left wheels on robot
